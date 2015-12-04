@@ -9,10 +9,10 @@ let add_person filename =
     let s = In_channel.read_all filename in
     A_ext.parse_address_book s `json in
   let count = List.length book.A.Address_book.person in
-  let newp = A.Person.({
-      name = "Silly Person";
-      id = Int32.of_int_exn (count + 1);
-      email = None; phone = [] }) in
+  let newp = A.Person.({ (A.default_person ()) with
+                         id = Int32.of_int_exn (count + 1);
+                         name = "Silly Person"
+                       }) in
   let newb = A.Address_book.({ person = newp :: book.person }) in
   let opts = Piqirun_ext.make_options ~pretty_print:true () in
   let json = A_ext.gen_address_book ~opts newb `json in
