@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This assumes the presence of addressbook.piqi
+piqi convert -f json -t piq --type addressbook/AddressBook ./testdata.json

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -x
+set -e
+schema=$(readlink -f schema/addressbook.piqi)
+pushd src/main/ocaml
+piqic-ocaml --multi-format ${schema}
+corebuild -package piqirun.ext addperson.native
+bin=$(readlink -f addperson.native)
+popd
+ln -fs ${bin} addperson_ocaml

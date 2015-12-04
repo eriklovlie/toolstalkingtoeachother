@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Silly build script for protobuf experiment...
+
+set -x
+set -e
+
+# NOTE: requires proto3, so you need a git clone of this somewhere...
+bindir=~/projects/protobuf-bin
+
+export PKG_CONFIG_PATH=${bindir}/lib/pkgconfig:${PKG_CONFIG_PATH}
+export LD_LIBRARY_PATH=${bindir}/lib:${LD_LIBRARY_PATH}
+export PATH=${bindir}/bin:${PATH}
+
+schema_dir=$(readlink -f schema)
+schema_piqi=${schema_dir}/addressbook.piqi
+schema_proto=${schema_piqi}.proto
+
+pushd src/main/cpp
+piqi to-proto ${schema_piqi}
+protoc --cpp_out=. -I ${schema_dir} ${schema_proto}
+g++ -std=c++11 addperson.cc addressbook.piqi.pb.cc -o addperson_cpp \
+    `pkg-config --cflags --libs protobuf`
+bin=$(readlink -f ./addperson_cpp)
+popd
+ln -fs ${bin}

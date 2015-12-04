@@ -1,0 +1,7 @@
+S .
+B src/main/ocaml/_build
+S src/main/ocaml
+PKG core
+PKG core_extended
+PKG piqirun.ext
+EXT nonrec

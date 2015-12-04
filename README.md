@@ -1,2 +1,7 @@
-# toolstalkingtoeachother
-Just testing out piqi and protobuf as a means of having command line tools talk json
+Example involving reading and modifying data stored as JSON from:
+
+- C++ (using protobuf)
+- Python (using protobuf)
+- OCaml (using piqi)
+
+Use the addressbook example from the protobuf online examples.
