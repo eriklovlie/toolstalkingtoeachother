@@ -17,13 +17,17 @@ from the piqi schema.
 You need to clone proto3 (in beta atm) somewhere and build it first.
 See `build_cpp`, it should be obvious. Build and run thusly:
 
-> ./build_cpp
-> ./addperson_cpp testdata.json
+```
+./build_cpp
+./addperson_cpp testdata.json
+```
 
 ## Building the OCaml
 
 You need some libraries first, install using opam.
 See `build_ocaml`, it should be obvious. Build and run thusly:
 
-> ./build_ocaml
-> ./addperson_ocaml testdata.json
+```
+./build_ocaml
+./addperson_ocaml testdata.json
+```
